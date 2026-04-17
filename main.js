@@ -46,26 +46,28 @@ const books = [
 ];
 
 
-// Snack 2 - Il primo libro scontato:
+// Snack 3 - Ordinare gli Autori:
+// - Creare un array (authors) che contiene gli autori dei libri.
+// - Crea una variabile booleana (areAuthorsAdults) per verificare se gli autori sono tutti maggiorenni.
+// Ordina l’array authors in base all’età, senza creare un nuovo array.
+// (se areAuthorsAdult è true, ordina in ordine crescente, altrimenti in ordine decrescente)
 
-const availableBooks = books.filter(book => book.available);+
-console.log(availableBooks);
 
-const discountedBooks = availableBooks.map(book => {
-    const price = parseFloat(book.price.replace('€', ''));
-    const discountedPrice = (price * 0.8).toFixed(2);
+const authors = books.map(book => book.author);
+console.log(authors);
 
-    return {
-        ...book,
-        price: `${discountedPrice}€`
-    }
-});
+const areAuthorsAdults = authors.every( author => author.age >= 18);
+console.log(areAuthorsAdults);
 
-console.log(discountedBooks);
+if(areAuthorsAdults){
+    authors.sort((a, b) => a.age - b.age);
+}else{
+    authors.sort((a, b) => b.age - a.age);
+};
+console.log(authors);
 
-const fullPriceBook = discountedBooks.find(book => {
-    const price = parseFloat(book.price.replace('€', ''));
-    return Number.isInteger(price); // price % 1 === 0, se divedendo per uno non c'è del resto, vuol dire che prima non c'era la virgola.
-});
 
-console.log(fullPriceBook);
+
+
+
+
