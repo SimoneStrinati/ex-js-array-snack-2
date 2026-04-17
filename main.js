@@ -59,11 +59,16 @@ console.log(authors);
 const areAuthorsAdults = authors.every( author => author.age >= 18);
 console.log(areAuthorsAdults);
 
-if(areAuthorsAdults){
-    authors.sort((a, b) => a.age - b.age);
-}else{
-    authors.sort((a, b) => b.age - a.age);
-};
+// if(areAuthorsAdults){
+//     authors.sort((a, b) => a.age - b.age);  
+// }else{
+//     authors.sort((a, b) => b.age - a.age);
+// };
+// console.log(authors);
+
+// oppure tutto su una riga
+
+authors.sort((a, b) => (a.age - b.age) * (areAuthorsAdults ? 1 : -1)); // così inverto il valore di sort() ed evito la ripetizione
 console.log(authors);
 
 
