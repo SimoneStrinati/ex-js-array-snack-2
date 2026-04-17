@@ -44,3 +44,19 @@ const books = [
 	  tags: ['html', 'advanced', 'junior', 'mid-senior']
   },
 ];
+
+
+// Snack 1 - Filtra e Modifica:
+
+const somma = (a, b) => a + b;
+
+console.log(somma(3, 2));
+
+const longBooks = books.filter(book => book.pages > 300);
+console.log('Libri con più di 300 pagine:', longBooks);
+
+const longBooksTitles = longBooks.map(book => book.title);
+console.log('Titoli dei libri di longBooks:', longBooksTitles);
+
+longBooksTitles.forEach(title => console.log(title));
+
