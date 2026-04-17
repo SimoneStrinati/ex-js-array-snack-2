@@ -46,30 +46,18 @@ const books = [
 ];
 
 
-// Snack 3 - Ordinare gli Autori:
-// - Creare un array (authors) che contiene gli autori dei libri.
-// - Crea una variabile booleana (areAuthorsAdults) per verificare se gli autori sono tutti maggiorenni.
-// Ordina l’array authors in base all’età, senza creare un nuovo array.
-// (se areAuthorsAdult è true, ordina in ordine crescente, altrimenti in ordine decrescente)
+// Snack 4 - Calcola l’età media:
+// - Creare un array (ages) che contiene le età degli autori dei libri.
+// - Calcola la somma delle età (agesSum) usando reduce.
+// - Stampa in console l’età media degli autori dei libri.
 
+const ages = books.map( book => book.author.age);
+console.log(ages);
 
-const authors = books.map(book => book.author);
-console.log(authors);
+const agesSum = ages.reduce((acc, age) => acc + age, 0);
+console.log(agesSum);
 
-const areAuthorsAdults = authors.every( author => author.age >= 18);
-console.log(areAuthorsAdults);
-
-// if(areAuthorsAdults){
-//     authors.sort((a, b) => a.age - b.age);  
-// }else{
-//     authors.sort((a, b) => b.age - a.age);
-// };
-// console.log(authors);
-
-// oppure tutto su una riga
-
-authors.sort((a, b) => (a.age - b.age) * (areAuthorsAdults ? 1 : -1)); // così inverto il valore di sort() ed evito la ripetizione
-console.log(authors);
+console.log(`L'età medie è: ${agesSum / ages.length}`);
 
 
 
