@@ -46,17 +46,26 @@ const books = [
 ];
 
 
-// Snack 1 - Filtra e Modifica:
+// Snack 2 - Il primo libro scontato:
 
-const somma = (a, b) => a + b;
+const availableBooks = books.filter(book => book.available);+
+console.log(availableBooks);
 
-console.log(somma(3, 2));
+const discountedBooks = availableBooks.map(book => {
+    const price = parseFloat(book.price.replace('€', ''));
+    const discountedPrice = (price * 0.8).toFixed(2);
 
-const longBooks = books.filter(book => book.pages > 300);
-console.log('Libri con più di 300 pagine:', longBooks);
+    return {
+        ...book,
+        price: `${discountedPrice}€`
+    }
+});
 
-const longBooksTitles = longBooks.map(book => book.title);
-console.log('Titoli dei libri di longBooks:', longBooksTitles);
+console.log(discountedBooks);
 
-longBooksTitles.forEach(title => console.log(title));
+const fullPriceBook = discountedBooks.find(book => {
+    const price = parseFloat(book.price.replace('€', ''));
+    return Number.isInteger(price); // price % 1 === 0, se divedendo per uno non c'è del resto, vuol dire che prima non c'era la virgola.
+});
 
+console.log(fullPriceBook);
