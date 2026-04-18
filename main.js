@@ -46,29 +46,23 @@ const books = [
 ];
 
 
-// Snack 6 (Bonus) - Ordina i libri:
-// - Crea una variabile booleana (areThereAvailableBooks) per verificare se c’è almeno un libro disponibile.
-// - Crea un array (booksByPrice) con gli elementi di books ordinati in base al prezzo (crescente).
-// - Ordina l’array booksByPrice in base alla disponibilità (prima quelli disponibili), senza creare un nuovo array.
+// Snack 7 (Bonus) - Analizza i tag:
+// Usa reduce per creare un oggetto (tagCounts) che conta quante volte ogni tag viene usato tra i libri.
 
 
-const areThereAvailableBooks = books.some(book => book.available);
+const tagCounts = books.reduce((acc, book) => {
+    
+    book.tags.forEach(tag => {
+        if(acc[tag]) {
+            acc[tag] = acc[tag] + 1;
+        } else {
+            acc[tag] = 1;
+        }
+    });
+    return acc;
+}, {});
 
-console.log(areThereAvailableBooks);
-
-const booksByPrice = books.sort((a, b) => {
-    const priceA = parseFloat(a.price.replace('€', ''));
-    const priceB = parseFloat(b.price.replace('€', ''));
-
-    return priceA - priceB;
-});
-
-
-booksByPrice.sort((a, b) => a.available ? -1 : 1);
-console.log(booksByPrice)
-
-
-
+console.log(tagCounts);
 
 
 
