@@ -46,22 +46,26 @@ const books = [
 ];
 
 
-// Snack 5 (Bonus) - Raccogli i libri:
-// - Usando l'API http://localhost:3333/books/{id} usa la combinazione di .map() e Promise.all(), 
-// per creare una funzione (getBooks) che a partire da un array di id (ids), ritorna una promise che risolve un array di libri (books).
-// Testala con l’array [2, 13, 7, 21, 19] .
+// Snack 6 (Bonus) - Ordina i libri:
+// - Crea una variabile booleana (areThereAvailableBooks) per verificare se c’è almeno un libro disponibile.
+// - Crea un array (booksByPrice) con gli elementi di books ordinati in base al prezzo (crescente).
+// - Ordina l’array booksByPrice in base alla disponibilità (prima quelli disponibili), senza creare un nuovo array.
 
 
-const ids = [2, 13, 7, 21, 19];
+const areThereAvailableBooks = books.some(book => book.available);
 
-async function getBooks(ids) {
-    const apiUrl = 'http://localhost:3333/books/';
-   return Promise.all(
-        ids.map(id => fetch(`${apiUrl}${id}`).then(res => res.json()))
-    );
-}
-getBooks(ids).then(books => console.log(books));
+console.log(areThereAvailableBooks);
 
+const booksByPrice = books.sort((a, b) => {
+    const priceA = parseFloat(a.price.replace('€', ''));
+    const priceB = parseFloat(b.price.replace('€', ''));
+
+    return priceA - priceB;
+});
+
+
+booksByPrice.sort((a, b) => a.available ? -1 : 1);
+console.log(booksByPrice)
 
 
 
